@@ -1,0 +1,187 @@
+import bs4, requests, os
+import docx
+
+
+
+"""GOLD"""
+
+def getSPOTrice(productUrl):
+    res = requests.get("https://www.kitco.com/charts/livegold.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#sp-bid") ##css selector
+    return elem[0].text.strip()
+
+def getGEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-us-american-gold-eagle-coin-dates-our-choice.html#")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)") ##css selector
+    return elem[0].text.strip()
+
+def getHALFGEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-2-oz-us-american-gold-eagle-coin.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)") ##css selector
+    return elem[0].text.strip()
+
+def getQUARTERGEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-4-oz-us-american-gold-eagle-coin-dates-our-choice.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)") ##css selector
+    return elem[0].text.strip()
+
+def getTEHNTHGEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/2020-american-eagle-1-10-oz-gold-coin-bu.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)") ##css selector
+    return elem[0].text.strip()
+
+def getGBPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-gold-buffalo-coin-bu.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getGMPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/2020-canadian-1-oz-gold-maple-leaf-coin.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getKrugPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-south-africa-gold-krugerrand-random-year.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getBarPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-royal-canadian-mint-rcm-gold-bar-9999-fine-in-assay-card.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getAUSAINTPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/20-saint-gaudens-us-mint-gold-double-eagle-almost-uncirculated-au-or-better.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getFIVECOMMEMPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/5-dollar-gold-us-commem.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+"""SILVER"""
+
+def getSilver_SPOTrice(productUrl):
+    res = requests.get("https://www.kitco.com/charts/livesilver.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#sp-bid") ##css selector
+    return elem[0].text.strip()
+
+def getSEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-american-silver-eagle-random-year.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getBulkSEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-american-silver-eagle-random-year.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(3) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def get2020SEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/2020-american-eagle-1-oz-silver-coin-bu.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getJUNKPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/90-silver-quarters-100-face-value-7564.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getSIlMAPPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/silver-maple-leaf-coin-1-oz-canadian-brilliant-uncirculated.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getSILBARPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/1-oz-999-fine-silver-bar.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+def getTENOUNCEPrice(productUrl):
+    res = requests.get("https://www.providentmetals.com/10-oz-silver-bar-varied-design-new-silvertowne.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#producttable > tbody > tr:nth-child(1) > td:nth-child(2)")  ##css selector
+    return elem[0].text.strip()
+
+"""USE METHODS TO SAVE VARIABLES"""
+
+saleSheet = docx.Document()
+
+GSpot_Price = getSPOTrice('https://www.kitco.com/charts/livegold.html')
+saleSheet.add_paragraph("Spot gold " + GSpot_Price)
+
+GE_price = getGEPrice('https://www.providentmetals.com/1-oz-us-american-gold-eagle-coin-dates-our-choice.html#')
+saleSheet.add_paragraph(f'Gold Eagle {GE_price}')
+
+HALFGE_price = getHALFGEPrice("https://www.providentmetals.com/1-2-oz-us-american-gold-eagle-coin.html")
+saleSheet.add_paragraph("1/2 GE " + HALFGE_price)
+
+QUARTERGE_price = getQUARTERGEPrice("https://www.providentmetals.com/1-4-oz-us-american-gold-eagle-coin-dates-our-choice.html")
+saleSheet.add_paragraph("1/4 GE "+ QUARTERGE_price)
+
+TENTHGE_price = getTEHNTHGEPrice("https://www.providentmetals.com/2020-american-eagle-1-10-oz-gold-coin-bu.html")
+saleSheet.add_paragraph("1/10 GE " + TENTHGE_price)
+
+GB_price = getGBPrice('https://www.providentmetals.com/1-oz-gold-buffalo-coin-bu.html')
+saleSheet.add_paragraph("Gold Buffalo " + GB_price)
+
+GM_price = getGMPrice('https://www.providentmetals.com/2020-canadian-1-oz-gold-maple-leaf-coin.html')
+saleSheet.add_paragraph("Gold Maple " + GM_price)
+
+Krug_price = getKrugPrice('https://www.providentmetals.com/1-oz-south-africa-gold-krugerrand-random-year.html')
+saleSheet.add_paragraph("Krugerrand " + Krug_price)
+
+GOLDBAR_price = getBarPrice('https://www.providentmetals.com/1-oz-royal-canadian-mint-rcm-gold-bar-9999-fine-in-assay-card.html')
+saleSheet.add_paragraph("Bar/Generic " + GOLDBAR_price)
+
+AUSAINT_price = getAUSAINTPrice("https://www.providentmetals.com/20-saint-gaudens-us-mint-gold-double-eagle-almost-uncirculated-au-or-better.html")
+saleSheet.add_paragraph("AU+ Saint " + AUSAINT_price)
+
+FIVECOMMEM_price = getFIVECOMMEMPrice("https://www.providentmetals.com/5-dollar-gold-us-commem.html")
+saleSheet.add_paragraph("$5 Commem " + FIVECOMMEM_price)
+
+"""SILVER"""
+
+Silver_Spot = getSilver_SPOTrice("https://www.kitco.com/charts/livesilver.html")
+saleSheet.add_paragraph("Spot Silver "+ Silver_Spot)
+
+SE_price = getSEPrice("https://www.providentmetals.com/1-oz-american-silver-eagle-random-year.html")
+saleSheet.add_paragraph("Random Silver Eagle " + SE_price)
+
+BulkSE_price = getBulkSEPrice("https://www.providentmetals.com/1-oz-american-silver-eagle-random-year.html")
+saleSheet.add_paragraph("Bulk Silver Eagle " + BulkSE_price)
+
+SE2020_price = get2020SEPrice("https://www.providentmetals.com/2020-american-eagle-1-oz-silver-coin-bu.html")
+saleSheet.add_paragraph("2020 Silver Eagle " + SE2020_price)
+
+JUNK_price = getJUNKPrice("https://www.providentmetals.com/90-silver-quarters-100-face-value-7564.html")
+saleSheet.add_paragraph("Junk price per 100 FV " + JUNK_price)
+
+SilMAP_price = getSIlMAPPrice("https://www.providentmetals.com/silver-maple-leaf-coin-1-oz-canadian-brilliant-uncirculated.html")
+saleSheet.add_paragraph("Silver Maple " + SilMAP_price)
+
+OUNCEsilver_price = getSILBARPrice("https://www.providentmetals.com/1-oz-999-fine-silver-bar.html")
+saleSheet.add_paragraph("Silver ounce " + OUNCEsilver_price)
+
+TENOUNCE_price = getTENOUNCEPrice("https://www.providentmetals.com/10-oz-silver-bar-varied-design-new-silvertowne.html")
+saleSheet.add_paragraph("10 oz bar " + TENOUNCE_price)
+
+saleSheet.save("C:\\Users\\abost\\PycharmProjects\FirstPythonPrograms\\demo4.docx")
