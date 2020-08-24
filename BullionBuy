@@ -1,0 +1,43 @@
+import requests, bs4
+import math
+
+def getSPOTrice(productUrl):
+    res = requests.get("https://www.kitco.com/charts/livegold.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#sp-bid") ##css selector
+    return elem[0].text.strip()
+
+def getSilver_SPOTrice(productUrl):
+    res = requests.get("https://www.kitco.com/charts/livesilver.html")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
+    elem = soup.select("#sp-bid") ##css selector
+    return elem[0].text.strip()
+
+GSpot_Price = getSPOTrice('https://www.kitco.com/charts/livegold.html')
+GOLD = float(GSpot_Price[0] + GSpot_Price[2:])
+
+Silver_Spot = getSilver_SPOTrice("https://www.kitco.com/charts/livesilver.html")
+SILVER = float(Silver_Spot)
+
+silver_maple = math.floor(SILVER*.95)
+silver_eagle = math.floor(SILVER*.99)
+silver_ounce = math.floor(SILVER*.95)
+silver_90 = math.floor(SILVER*.715*.85)
+
+
+gold_eagle = math.floor(GOLD*.96)
+gold_maple = math.floor(GOLD*.95)
+gold_20 = math.floor(GOLD*.96*.92)
+gold_commem = math.floor(GOLD*.24*.9)
+gold_bar = math.floor(GOLD*.94)
+
+
+print("Gold Eagle at 96% - $" + str(gold_eagle))
+print("Gold Maple at 95% - $" + str(gold_maple))
+print("Gold Bar at 90% - $" + str(gold_bar))
+print("Silver Eagle at 99% - $" + str(silver_eagle))
+print("Silver Maple at 95% - $" + str(silver_maple))
+print("Silver Ounce at 95% - $" + str(silver_ounce))
+print("90% at 85% - $" + str(silver_90))
+print("Double Eagle at 92% - $" + str(gold_20))
+print("5 Dollar Commem at 90% - $" + str(gold_commem))
